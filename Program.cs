@@ -22,11 +22,6 @@ do {
 
 
 
-
-
-
-
-
 Console.WriteLine("Gerenciador de Gastos Pessoais");
 Console.WriteLine("------------------------");
 Console.WriteLine("Opções:");
@@ -35,6 +30,7 @@ Console.WriteLine("2. remover um gasto");
 Console.WriteLine("3. Listar todas os gastos");
 Console.WriteLine("4. Listar gastos do mês");
 Console.WriteLine("5. Calcular dinheiro restante");
+Console.WriteLine("6- Análize salarial");
 Console.WriteLine("0. Sair");
 Console.WriteLine("------------------------");
 option = Console.ReadLine()!;
@@ -196,6 +192,33 @@ Console.WriteLine();
             Console.WriteLine($"Dinheiro restante após os gastos: {restante:C}");
             Console.WriteLine();
             break;
+
+
+
+
+        case "6":
+
+            Console.WriteLine("Análise de otimização salarial:");
+            Console.WriteLine();
+
+            if (calculador.Listar().Count == 0)
+            {
+                Console.WriteLine("Nenhum gasto registrado para análise.");
+                break;
+            }
+
+            var recomendador = new Recomendador(salario, calculador.Listar());
+
+            foreach (var mensagem in recomendador.Avaliar())
+            {
+                Console.WriteLine(mensagem);
+            }
+
+            Console.WriteLine();
+            break;
+
+
+
 
 
 
